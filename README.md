@@ -105,14 +105,3 @@ make -j4
 ```bash
 ./bank_app
 ```
-
-## Notes
-
-This is a learning/portfolio project. Before using it beyond a demo:
-- Replace `Utils::hashPin()` (currently `std::hash`, for demonstration only)
-  with a proper salted hash such as bcrypt or Argon2.
-- Move DB credentials out of source code and into environment
-  variables or a config file.
-- Wrap multi-statement operations (like `transfer()`) in a real SQL
-  transaction (`START TRANSACTION` / `COMMIT` / `ROLLBACK`) instead of the
-  best-effort in-application rollback currently used.

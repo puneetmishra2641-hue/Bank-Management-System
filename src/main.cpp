@@ -5,6 +5,7 @@
 #include "DatabaseManager.hpp"
 #include "AccountFactory.hpp"
 #include "Exceptions.hpp"
+#include "DatabaseConfig.hpp"
 
 // main.cpp
 // Console entry point. Owns a single BankService instance and dispatches
@@ -203,12 +204,15 @@ int main()
     // --- Database ---
     try
     {
+        DatabaseConfig config = loadDatabaseConfig();
+
         DatabaseManager::initialize(
-            /*host*/ "127.0.0.1",
-            /*user*/ "root",
-            /*password*/ "Rashi@Abhi@44",
-            /*dbName*/ "bank_management_system",
-            /*port*/ 3306);
+            config.host,
+            config.user,
+            config.password,
+            config.dbName,
+            config.port);
+
         DatabaseManager::getInstance().ensureSchema();
     }
     catch (const DatabaseException &e)
@@ -216,7 +220,7 @@ int main()
         std::cerr << "Fatal: could not connect to the database.\n"
                   << e.what() << "\n"
                   << "Check that MySQL is running and sql/schema.sql has been applied,\n"
-                  << "or update the credentials in main.cpp.\n";
+                  << "or check the credentials in .env.\n";
         return 1;
     }
 

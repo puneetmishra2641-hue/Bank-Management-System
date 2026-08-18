@@ -4,9 +4,12 @@
 # Ignore dynamic libraries
 *.dll
 
-# Ignore VS Code specific settings (optional but recommended)
+# Ignore VS Code specific settings 
 .vscode/
 
-# Ignore object files if you create them later
+# Ignore object files
 *.o
 *.obj
+
+#Ignore configuration files
+*.env
